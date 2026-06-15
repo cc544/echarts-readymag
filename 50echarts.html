@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校企帮扶就业率统计</title>
+  <script src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box}
+    html,body {width:100%;height:100%;overflow:hidden;background:transparent}
+    #main {width:100%;height:100%}
+  </style>
+</head>
+<body>
+<div id="main"></div>
+<script>
+const chartDom = document.getElementById('main');
+const myChart = echarts.init(chartDom);
+const option = {
+  backgroundColor: 'transparent',
+  title: {
+    text: '校企帮扶成功案例统计',
+    left: 'center',
+    textStyle: { fontSize: 18, color: '#333', fontWeight: 500 }
+  },
+  tooltip: {
+    trigger: 'axis',
+    formatter: '{b}：{c}%'
+  },
+  grid: {
+    left: '6%',
+    right: '6%',
+    bottom: '12%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: ['普通院校\n(共28所)', '残联校企定向班'],
+    axisTick: { alignWithLabel: true },
+    axisLine: { lineStyle: { color: '#eee' } },
+    axisLabel: { fontSize: 10, color: '#555' }
+  },
+  yAxis: {
+    type: 'value',
+    max: 70,
+    name: '对口就业率 (%)',
+    axisLabel: { formatter: '{value}%', fontSize: 11, color: '#555' },
+    splitLine: { lineStyle: { color: '#f0f0f0', type: 'dashed' } },
+    axisLine: { show: false },
+    axisTick: { show: false }
+  },
+  series: [
+    {
+      type: 'bar',
+      barWidth: '45%',
+      data: [
+        {
+          value: 21.5,
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#87b8e8' },
+              { offset: 1, color: '#c0d8f0' }
+            ]),
+            borderRadius: [8, 8, 0, 0],
+            shadowBlur: 10,
+            shadowColor: 'rgba(135,184,232,0.22)'
+          }
+        },
+        {
+          value: 64.8,
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#f7c6b0' },
+              { offset: 1, color: '#fad9c8' }
+            ]),
+            borderRadius: [8, 8, 0, 0],
+            shadowBlur: 10,
+            shadowColor: 'rgba(247,198,176,0.22)'
+          }
+        }
+      ],
+      label: {
+        show: true,
+        position: 'top',
+        fontSize: 11,
+        color: '#333',
+        formatter: '{c}%'
+      }
+    }
+  ]
+};
+myChart.setOption(option);
+window.addEventListener('resize', ()=>myChart.resize())
+</script>
+</body>
+</html>
